@@ -11,11 +11,11 @@ contract RaffleNFT is ERC721, CustomChanIbcApp {
     using Counters for Counters.Counter;
     Counters.Counter private currentTokenId;
 
-    string tokenURIPolyWinner = "htttps:";
+    string tokenURIPolyWinner;
 
-    constructor(IbcDispatcher _dispatcher, string memory _tokenURIPolyWinner) 
+    constructor(IbcDispatcher _dispatcher) 
     CustomChanIbcApp(_dispatcher) ERC721("ProofOfWinnerNFT", "PolyWinner"){
-        tokenURIPolyWinner = _tokenURIPolyWinner;
+        tokenURIPolyWinner = "URL";
     }
 
     function mint(address recipient)
