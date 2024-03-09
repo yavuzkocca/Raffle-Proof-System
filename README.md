@@ -1,4 +1,4 @@
-#  Cross-chain Proof of Raffle
+#  Quest-Into-The-Polyverse-Phase-1 : Cross-chain Raffle Proof System
 
 
 
