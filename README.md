@@ -3,7 +3,7 @@
 
 
 # Team Members
-@sturec5 - Lead Developer
+@sturec5 - Lead Developer 
 
 @yavuzkocca - Developer
 
