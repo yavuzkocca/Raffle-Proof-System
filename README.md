@@ -62,7 +62,7 @@ npx hardhat --network optimism verify <ContractAddress> "0x58f1863f75c9db1c7266d
 ```
 
 ```bash
-npx hardhat --network base verify <ContractAddress> "0xfc1d3e02e00e0077628e8cc9edb6812f95db05dc" "URL"
+npx hardhat --network base verify <ContractAddress> "0xfc1d3e02e00e0077628e8cc9edb6812f95db05dc" "https://i.ibb.co/3y0SGCH/winner-nft.webp"
 ```
 
 and create a channel:
