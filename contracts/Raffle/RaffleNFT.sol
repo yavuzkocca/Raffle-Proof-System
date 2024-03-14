@@ -15,7 +15,7 @@ contract RaffleNFT is ERC721, CustomChanIbcApp {
 
     constructor(IbcDispatcher _dispatcher) 
     CustomChanIbcApp(_dispatcher) ERC721("ProofOfWinnerNFT", "PolyWinner"){
-        tokenURIPolyWinner = "URL";
+        tokenURIPolyWinner = "https://i.ibb.co/3y0SGCH/winner-nft.webp";
     }
 
     function mint(address recipient)
