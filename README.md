@@ -71,6 +71,10 @@ and create a channel:
 just create-channel
 ```
 
+Wait for config.json update
+
+https://ibb.co/VSrJmdN
+
 This updates frontend contract
 ```bash
 node update_frontend.js
@@ -88,16 +92,11 @@ Open browser and enter http://localhost:3000/
 
 Enter Raffle then End Raffle with the wallet which the contracts deployed.
 
-Then send packet.
+
 
 ### Sending a packet
 
-Now with an existing channel in the config  run:
-
-```bash
-just send-packet optimism false
-```
-You'll see an active waiting poll in the terminal and will be informed if the packet was sent successfully.
+By using the Send Packet button via frontend.
 
 You can check the Nft from Base Sepolia Explorer.
 
