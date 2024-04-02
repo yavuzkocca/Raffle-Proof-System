@@ -4,30 +4,22 @@ import { useMoralis, useWeb3Contract } from "react-moralis"
 import { useEffect, useState } from "react"
 import { useNotification } from "web3uikit"
 import { ethers } from "ethers";
+import config from "../../config.json"
+
 
 export default function LotteryEntrance() {
 
-    // const [provider, setProvider] = useState(null);
-
-    // useEffect(() => {
-    //   const initializeProvider = async () => {
-    //     if (window.ethereum) {
-    //       await window.ethereum.request({ method: 'eth_requestAccounts' });
-    //       const provider = new ethers.providers.Web3Provider(window.ethereum);
-    //       setProvider(provider);
-    //     }
-    //   };
-
-    //   initializeProvider();
-    // }, []);
-
-
+    const channelId = config.sendPacket.optimism.channelId
+    const raffleAddress = config.sendPacket.optimism.portAddr
+    console.log(typeof(channelId))
+    console.log(typeof(raffleAddress))
 
     const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     // These get re-rendered every time due to our connect button!
-    const chainId = parseInt(chainIdHex)
+    //const chainId = parseInt(chainIdHex)
     // console.log(`ChainId is ${chainId}`)
-    const raffleAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
+    //const raffleAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
+    
 
     // State hooks
     // https://stackoverflow.com/questions/58252454/react-hooks-using-usestate-vs-just-variables
@@ -83,6 +75,20 @@ export default function LotteryEntrance() {
         params: {},
     })
 
+    const inBytes = ethers.encodeBytes32String(channelId);
+    console.log(inBytes)
+    
+    const { runContractFunction: sendPacket } = useWeb3Contract({
+        abi: abi,
+        contractAddress: raffleAddress,
+        functionName: "sendPacket",
+        params: {
+            channelId: inBytes,
+            timeoutSeconds: 36000,
+        },
+        
+    })
+
 
 
     async function updateUIValues() {
@@ -109,18 +115,7 @@ export default function LotteryEntrance() {
             updateUIValues()
         }
     }, [isWeb3Enabled])
-    // no list means it'll update everytime anything changes or happens
-    // empty list means it'll run once after the initial rendering
-    // and dependencies mean it'll run whenever those things in the list change
-
-    // An example filter for listening for events, we will learn more on this next Front end lesson
-    // const filter = {
-    //     address: raffleAddress,
-    //     topics: [
-    //         // the name of the event, parnetheses containing the data type of each event, no spaces
-    //         utils.id("RaffleEnter(address)"),
-    //     ],
-    // }
+    
 
     const handleNewNotification = () => {
         dispatch({
@@ -188,6 +183,32 @@ export default function LotteryEntrance() {
                                         )}
                                     </button>) : (<button></button>)}
 
+
+                                {//Send-Packet BUTTON
+                                    owner1.toLowerCase() == account ? (<button
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto"
+                                        onClick={async () => {
+                                            try {
+                                                await sendPacket({
+                                                    onSuccess: async (result) => {
+                                                        handleSuccess(result);
+                                                    },
+                                                    onError: (error) => console.log(error),
+                                                });
+                                            } catch (error) {
+                                                // Handle any errors that might occur during pickWinner or sendPacket execution
+                                                console.error("An error occurred:", error);
+                                            }
+                                        }}
+
+                                        disabled={isLoading || isFetching}
+                                    >
+                                        {isLoading || isFetching ? (
+                                            <div className="animate-spin spinner-border h-8 w-8 border-b-2 rounded-full"></div>
+                                        ) : (
+                                            "Send Packet"
+                                        )}
+                                    </button>) : (<button></button>)}
                                 {//ENTER RAFFLE BUTTON
                                     recentWinner == "0x0000000000000000000000000000000000000000" ? (<button
                                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto"

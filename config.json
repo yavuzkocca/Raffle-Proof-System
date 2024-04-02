@@ -1,27 +1,27 @@
 {
   "proofsEnabled": false,
   "deploy": {
-    "optimism": "XCounter",
-    "base": "XCounter"
+    "optimism": "Raffle",
+    "base": "RaffleNFT"
   },
   "createChannel": {
     "srcChain": "optimism",
-    "srcAddr": "0x1234567890AbCdEf1234567890aBcDeF12345678",
+    "srcAddr": "0x3E2522D1c7e91aaBB68D029CAe05d0d1D7000F27",
     "dstChain": "base",
-    "dstAddr": "0x1234567890AbCdEf1234567890aBcDeF12345678",
+    "dstAddr": "0x4465f5bD149D5592097Ec9d362B6a6376EeD2902",
     "version": "1.0",
     "ordering": 0,
     "fees": false
   },
   "sendPacket": {
     "optimism": {
-      "portAddr": "0x1234567890abcdef1234567890abcdef12345678",
-      "channelId": "channel-n",
+      "portAddr": "0x3E2522D1c7e91aaBB68D029CAe05d0d1D7000F27",
+      "channelId": "channel-40134",
       "timeout": 36000
     },
     "base": {
-      "portAddr": "0x1234567890abcdef1234567890abcdef12345678",
-      "channelId": "channel-n",
+      "portAddr": "0x4465f5bD149D5592097Ec9d362B6a6376EeD2902",
+      "channelId": "channel-40135",
       "timeout": 36000
     }
   },
