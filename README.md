@@ -73,7 +73,8 @@ just create-channel
 
 Wait for config.json update
 
-https://ibb.co/VSrJmdN
+![alt text](https://i.ibb.co/d21jgSc/Screenshot-2024-04-02-at-15-12-31.png)
+
 
 This updates frontend contract
 ```bash
